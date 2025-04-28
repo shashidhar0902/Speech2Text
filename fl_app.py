@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import os
 import tempfile
+from nlp_intent import detect_intent
 from speech2text import speech_to_text
 from pydub import AudioSegment
 
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',image="default.jpg")
 
 @app.route('/api/speech-to-text', methods=['POST'])
 def api_speech_to_text():
@@ -46,9 +47,21 @@ def api_speech_to_text():
     try:
         # Convert speech to text using speech2text.py
         text = speech_to_text(wav_filename)
+        intent = detect_intent(text)
+        if intent == "on_light":
+            image = "light_on.jpg"
+        elif intent == "off_light":
+            image = "light_off.jpg"
+        elif intent == "on_fan":
+            image = "fan_on.jpg"
+        elif intent == "off_fan":
+            image = "fan_off.jpg"
+        else:
+            image = "default.jpg"
+        #return render_template('index.html', image=image)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+    print("************************************",text)
     return jsonify({'text': text})
 
 @app.errorhandler(404)

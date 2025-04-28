@@ -2,3 +2,6 @@ flask
 transformers
 torch
 pydub
+sentence-transformers
+numpy
+
