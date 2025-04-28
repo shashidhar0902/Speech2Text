@@ -6,7 +6,7 @@
     <title>Speech to Text</title>
 </head>
 <body>
-    <img src="{{ url_for('static', filename=image) }}" alt="Light Image">
+    <img id="statusImage" src="{{ url_for('static', filename=image) }}" alt="Light Image">
     <h1>Speech to Text</h1>
     <button id="recordButton">Start Recording</button>
     <p id="status"></p>

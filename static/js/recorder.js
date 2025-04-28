@@ -52,6 +52,10 @@ function sendAudioToServer(audioBlob) {
         if (data.text) {
             transcriptionDiv.textContent = data.text;
             status.textContent = "Transcription received.";
+            if (data.image) {
+                const statusImage = document.getElementById('statusImage');
+                statusImage.src = '/static/' + data.image;
+            }
         } else if (data.error) {
             status.textContent = "Error: " + data.error;
         }

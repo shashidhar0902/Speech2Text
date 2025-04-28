@@ -61,8 +61,8 @@ def api_speech_to_text():
         #return render_template('index.html', image=image)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    print("************************************",text)
-    return jsonify({'text': text})
+    print("************************************",text, image)
+    return jsonify({'text': text, 'image': image})
 
 @app.errorhandler(404)
 def not_found(error):
