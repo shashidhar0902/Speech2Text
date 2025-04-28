@@ -56,6 +56,10 @@ def api_speech_to_text():
             image = "fan_on.jpg"
         elif intent == "off_fan":
             image = "fan_off.jpg"
+        elif intent == "on_ac":
+            image = "ac_on.jpg"
+        elif intent == "off_ac":
+            image = "ac_off.jpg"
         else:
             image = "default.jpg"
         #return render_template('index.html', image=image)
